@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مطعم البركة - فرع النزهة</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #CC1F1F;
+    --dark-red: #9B1515;
+    --gold: #D4A017;
+    --cream: #FFF8EE;
+    --dark: #1a0a0a;
+    --text: #2d1a1a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Tajawal', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #9B1515 0%, #CC1F1F 50%, #9B1515 100%);
+    padding: 40px 20px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle at 30% 50%, rgba(212,160,23,0.15) 0%, transparent 60%),
+                radial-gradient(circle at 70% 30%, rgba(255,255,255,0.05) 0%, transparent 40%);
+    animation: shimmer 6s ease-in-out infinite alternate;
+  }
+
+  @keyframes shimmer {
+    0% { transform: rotate(0deg) scale(1); }
+    100% { transform: rotate(5deg) scale(1.05); }
+  }
+
+  .hero-logo {
+    font-size: 72px;
+    font-weight: 900;
+    color: white;
+    text-shadow: 3px 3px 0 var(--dark-red), 0 0 40px rgba(212,160,23,0.4);
+    letter-spacing: -2px;
+    position: relative;
+    animation: fadeDown 0.8s ease;
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-sub {
+    color: var(--gold);
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 8px;
+    letter-spacing: 2px;
+    position: relative;
+  }
+
+  .hero-tagline {
+    color: rgba(255,255,255,0.9);
+    font-size: 18px;
+    margin-top: 12px;
+    position: relative;
+  }
+
+  .hero-badges {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  .badge {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(212,160,23,0.5);
+    color: white;
+    padding: 6px 18px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+  }
+
+  /* CONTACT BAR */
+  .contact-bar {
+    background: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .contact-item span.icon { font-size: 18px; }
+
+  /* WAVE */
+  .wave {
+    background: var(--red);
+    height: 40px;
+    clip-path: ellipse(55% 100% at 50% 0%);
+    margin-top: -1px;
+  }
+
+  /* SECTION */
+  .section {
+    padding: 40px 16px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .section-title h2 {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--red);
+    position: relative;
+  }
+
+  .section-title h2::after {
+    content: '';
+    display: block;
+    width: 60%;
+    height: 3px;
+    background: var(--gold);
+    margin-top: 4px;
+    border-radius: 2px;
+  }
+
+  .section-title .emoji { font-size: 32px; }
+
+  /* GRID */
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  .menu-card {
+    background: white;
+    border-radius: 16px;
+    padding: 18px;
+    box-shadow: 0 4px 20px rgba(204,31,31,0.08);
+    border: 1px solid rgba(204,31,31,0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .menu-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(204,31,31,0.15);
+  }
+
+  .card-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .card-name.special { color: var(--red); }
+
+  .price-tags {
+    display: flex;
+    gap: 6px;
+    margin-top: 6px;
+  }
+
+  .price {
+    background: var(--cream);
+    border: 1px solid rgba(212,160,23,0.3);
+    border-radius: 8px;
+    padding: 2px 8px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--dark-red);
+  }
+
+  .price-label {
+    font-size: 10px;
+    color: #999;
+    display: block;
+    text-align: center;
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 8px;
+    background: linear-gradient(90deg, var(--red), var(--gold), var(--red));
+    margin: 0;
+    opacity: 0.3;
+  }
+
+  /* PHOTOS SECTION */
+  .photos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .photo-card {
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 1;
+    background: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #999;
+    border: 2px solid rgba(204,31,31,0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+
+  /* FOOTER */
+  .footer {
+    background: linear-gradient(135deg, #9B1515, #CC1F1F);
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 20px;
+  }
+
+  .footer h3 {
+    font-size: 28px;
+    font-weight: 900;
+    margin-bottom: 8px;
+  }
+
+  .footer p {
+    font-size: 15px;
+    opacity: 0.9;
+    margin: 6px 0;
+  }
+
+  .footer .address {
+    background: rgba(255,255,255,0.15);
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 12px;
+    margin-top: 16px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .hours-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gold);
+    color: var(--dark);
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-weight: 800;
+    font-size: 16px;
+    margin-top: 16px;
+  }
+
+  /* Table style */
+  .menu-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(204,31,31,0.08);
+    margin-bottom: 16px;
+  }
+
+  .menu-table th {
+    background: var(--red);
+    color: white;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .menu-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid rgba(204,31,31,0.07);
+    font-size: 14px;
+  }
+
+  .menu-table tr:last-child td { border-bottom: none; }
+  .menu-table tr:nth-child(even) td { background: rgba(255,248,238,0.7); }
+
+  .menu-table td:last-child, .menu-table td:nth-last-child(2), .menu-table td:nth-last-child(3) {
+    text-align: center;
+    font-weight: 700;
+    color: var(--dark-red);
+  }
+
+  /* Highlight special */
+  .highlight { color: var(--red); font-weight: 800; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-logo">البركة</div>
+  <div class="hero-sub">فول و فلافل • فرع النزهة</div>
+  <div class="hero-tagline">لقمة تدلعك.. وقرمشة تشبعك</div>
+  <div class="hero-badges">
+    <span class="badge">🕐 24 ساعة</span>
+    <span class="badge">🛵 توصيل للبيت</span>
+    <span class="badge">🥙 شاورما ولحوم</span>
+    <span class="badge">🧆 فول وفلافل</span>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="contact-bar">
+  <div class="contact-item"><span class="icon">📞</span> 01001803423</div>
+  <div class="contact-item"><span class="icon">📞</span> 01113179539</div>
+  <div class="contact-item"><span class="icon">📍</span> 132 شارع النزهة، ميدان تريومف، مصر الجديدة</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- MENU: العلب -->
+<div class="section">
+  <div class="section-title">
+    <span class="emoji">🫕</span>
+    <h2>العلب</h2>
+  </div>
+  <table class="menu-table">
+    <thead>
+      <tr>
+        <th>الصنف</th>
+        <th>صغير</th>
+        <th>وسط</th>
+        <th>كبير</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>عجينة طعمية</td><td>18</td><td>26</td><td>40</td></tr>
+      <tr><td>فول سادة</td><td>18</td><td>26</td><td>40</td></tr>
+      <tr><td>فول زيت حار</td><td>20</td><td>30</td><td>40</td></tr>
+      <tr><td>فول محوج</td><td>20</td><td>30</td><td>42</td></tr>
+      <tr><td>فول بالصلصة</td><td>20</td><td>30</td><td>42</td></tr>
+      <tr><td>فول بالزبدة</td><td>20</td><td>30</td><td>42</td></tr>
+      <tr><td>فول زيتون</td><td>20</td><td>30</td><td>42</td></tr>
+      <tr><td class="highlight">فول البركة</td><td>-</td><td>-</td><td>-</td></tr>
+      <tr><td>فول اسكندراني</td><td>20</td><td>29</td><td>44</td></tr>
+      <tr><td>فول بالبيض السلوق</td><td>23</td><td>35</td><td>50</td></tr>
+      <tr><td>فول بالسجق</td><td>23</td><td>37</td><td>60</td></tr>
+      <tr><td>فول بالأوملايت</td><td>23</td><td>-</td><td>-</td></tr>
+      <tr><td>فول بالسوسيس</td><td>20</td><td>-</td><td>-</td></tr>
+      <tr><td>جبنة قبتا</td><td>15</td><td>-</td><td>40</td></tr>
+      <tr><td>جبنة قديمة</td><td>15</td><td>-</td><td>40</td></tr>
+      <tr><td>بابا غنوج</td><td>15</td><td>-</td><td>40</td></tr>
+      <tr><td>شكشوكة</td><td>-</td><td>-</td><td>-</td></tr>
+      <tr><td>مسقعة</td><td>-</td><td>-</td><td>-</td></tr>
+      <tr><td>مسقعة بالسجق</td><td>-</td><td>-</td><td>-</td></tr>
+      <tr><td>بطاطس مهروسة</td><td>15</td><td>30</td><td>50</td></tr>
+      <tr><td>مهروسة بالجبنة الرومي</td><td>-</td><td>40</td><td>-</td></tr>
+      <tr><td>مهروسة بالأوملايت</td><td>28</td><td>-</td><td>-</td></tr>
+      <tr><td>طبق البيض الأوملايت</td><td>20</td><td>30</td><td>-</td></tr>
+      <tr><td>طبق شيبسي</td><td>15</td><td>-</td><td>-</td></tr>
+      <tr><td>طبق صوايع كاتشب</td><td>20</td><td>-</td><td>-</td></tr>
+      <tr><td>طبق صوايع كاتشب ومايونيز</td><td>21</td><td>26</td><td>-</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="divider"></div>
+
+<!-- MENU: متنوعات -->
+<div class="section">
+  <div class="section-title">
+    <span class="emoji">🧆</span>
+    <h2>متنوعات</h2>
+  </div>
+  <table class="menu-table">
+    <thead>
+      <tr>
+        <th>الصنف</th>
+        <th>سعر</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>قرص طعمية</td><td>26</td></tr>
+      <tr><td>قرص طعمية محشي</td><td>26</td></tr>
+      <tr><td>قرص طعمية مخصوص</td><td>30</td></tr>
+      <tr><td>قرص طعمية بليمون مصفر</td><td>30</td></tr>
+      <tr><td>قرص طعمية محشي كبير</td><td>42</td></tr>
+      <tr><td>قرص طعمية محشي شيدر</td><td>42</td></tr>
+      <tr><td>قرص طعمية محشي موتزاريلا</td><td>42</td></tr>
+      <tr><td>قرص طعمية محشي رومي</td><td>42</td></tr>
+      <tr><td>قرص عجة بلدي</td><td>18</td></tr>
+      <tr><td>طبق عجة فرنساوي</td><td>20</td></tr>
+      <tr><td>قرص عين كتكوت</td><td>8</td></tr>
+      <tr><td>بيضة مسلوقة</td><td>13</td></tr>
+      <tr><td>بيضة مدحرجة</td><td>10</td></tr>
+      <tr><td>طبق أوملايت آباتشي</td><td>23</td></tr>
+      <tr><td>طبق أوملايت ميكس جن</td><td>23</td></tr>
+      <tr><td>طبق أوملايت محشي رومي</td><td>20</td></tr>
+      <tr><td>طبق أوملايت جبنة بسطرمة</td><td>25</td></tr>
+      <tr><td>طبق جبنة مقلية 3 قطع</td><td>3</td></tr>
+      <tr><td>عيش بلدي</td><td>3</td></tr>
+      <tr><td>عيش شامي</td><td>1.5</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="divider"></div>
+
+<!-- MENU: مقبلات -->
+<div class="section">
+  <div class="section-title">
+    <span class="emoji">🥗</span>
+    <h2>مقبلات</h2>
+  </div>
+  <table class="menu-table">
+    <thead>
+      <tr>
+        <th>الصنف</th>
+        <th>صغير</th>
+        <th>وسط</th>
+        <th>كبير</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>ليمون مخلل</td><td>10</td><td>20</td><td>-</td></tr>
+      <tr><td>طحينة</td><td>10</td><td>20</td><td>-</td></tr>
+      <tr><td>سلطة بلدي</td><td>12</td><td>30</td><td>-</td></tr>
+      <tr><td>طرشي بلدي</td><td>7</td><td>15</td><td>-</td></tr>
+      <tr><td>طبق طماطم وخيار وفلفل</td><td>-</td><td>15</td><td>-</td></tr>
+      <tr><td>باذنجان (مخلل - مقلي)</td><td>-</td><td>18</td><td>-</td></tr>
+      <tr><td>طبق خيار مخلل</td><td>-</td><td>23</td><td>26</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="divider"></div>
+
+<!-- SANDWICHES: فول -->
+<div class="section">
+  <div class="section-title">
+    <span class="emoji">🫔</span>
+    <h2>سندوتشات الفول</h2>
+  </div>
+  <table class="menu-table">
+    <thead>
+      <tr>
+        <th>الصنف</th>
+        <th>شامي</th>
+        <th>بلدي</th>
+        <th>فينو</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="highlight">فول البركة</td><td>11</td><td>-</td><td>-</td></tr>
+      <tr><td>فول</td><td>11</td><td>-</td><td>-</td></tr>
+      <tr><td>فول اسكندراني</td><td>14</td><td>20</td><td>23</td></tr>
+      <tr><td>فول صالح</td><td>13</td><td>16</td><td>-</td></tr>
+      <tr><td>فول زيت زيتون</td><td>13</td><td>16</td><td>-</td></tr>
+      <tr><td>فول بالفاصل</td><td>13</td><td>-</td><td>-</td></tr>
+      <tr><td>فول على باذنجان</td><td>16</td><td>-</td><td>-</td></tr>
+      <tr><td>فول على باذنجان ولحم</td><td>16</td><td>-</td><td>-</td></tr>
+      <tr><td>فول بابا غنوج</td><td>16</td><td>21</td><td>-</td></tr>
+      <tr><td>فول أوملايت</td><td>-</td><td>21</td><td>-</td></tr>
+      <tr><td>فول سجق</td><td>-</td><td>-</td><td>-</td></tr>
+      <tr><td>فول بليمون مصفر</td><td>15</td><td>15</td><td>-</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SANDWICHES: طعمية -->
+<div class="section" style="padding-top:0">
+  <div class="section-title">
+    <span class="emoji">🧆</span>
+    <h2>سندوتشات الطعمية</h2>
+  </div>
+  <table class="menu-table">
+    <thead>
+      <tr>
+        <th>الصنف</th>
+        <th>شامي</th>
+        <th>بلدي</th>
+        <th>فينو</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>طعمية</td><td>11</td><td>13</td><td>13</td></tr>
+      <tr><td>طعمية ميكس</td><td>-</td><td>14</td><td>-</td></tr>
+      <tr><td>طعمية محشية على فول</td><td>-</td><td>16</td><td>-</td></tr>
+      <tr><td>طعمية على بابا غنوج</td><td>-</td><td>16</td><td>16</td></tr>
+      <tr><td>طعمية على جبنة قديمة</td><td>-</td><td>16</td><td>-</td></tr>
+      <tr><td>طعمية على عين كتكوت</td><td>-</td><td>16</td><td>-</td></tr>
+      <tr><td>طعمية على أوملايت</td><td>-</td><td>20</td><td>-</td></tr>
+      <tr><td>طعمية جبنة موتزاريلا</td><td>-</td><td>21</td><td>-</td></tr>
+      <tr><td>طعمية جبنة رومي</td><td>-</td><td>20</td><td>-</td></tr>
+      <tr><td>طعمية جبنة بسطرمة</td><td>-</td><td>25</td><td>25</td></tr>
+      <tr><td>طعمية كبير بسطرمة</td><td>-</td><td>25</td><td>-</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SANDWICHES: بطاطس -->
+<div class="section" style="padding-top:0">
+  <div class="section-title">
+    <span class="emoji">🍟</span>
+    <h2>سندوتشات البطاطس</h2>
+  </div>
+  <table class="menu-table">
+    <thead>
+      <tr>
+        <th>الصنف</th>
+        <th>شامي</th>
+        <th>بلدي</th>
+        <th>فينو</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>بطاطس صوايع</td><td>15</td><td>15</td><td>18</td></tr>
+      <tr><td>بطاطس شيبسي</td><td>15</td><td>15</td><td>18</td></tr>
+      <tr><td>بطاطس جامبو</td><td>15</td><td>15</td><td>18</td></tr>
+      <tr><td>بطاطس باينة</td><td>15</td><td>18</td><td>21</td></tr>
+      <tr><td>بطاطس كاتشب</td><td>15</td><td>18</td><td>21</td></tr>
+      <tr><td>بطاطس مايونيز</td><td>15</td><td>18</td><td>21</td></tr>
+      <tr><td>بطاطس كاتشب ومايونيز</td><td>17</td><td>20</td><td>23</td></tr>
+      <tr><td>بطاطس على باذنجان</td><td>17</td><td>20</td><td>23</td></tr>
+      <tr><td>بطاطس على مسقعة</td><td>17</td><td>20</td><td>23</td></tr>
+      <tr><td>بطاطس على بيض</td><td>20</td><td>22</td><td>28</td></tr>
+      <tr><td>بطاطس على أوملايت</td><td>20</td><td>22</td><td>28</td></tr>
+      <tr><td>بطاطس شيدر</td><td>22</td><td>25</td><td>28</td></tr>
+      <tr><td>بطاطس رومي</td><td>22</td><td>25</td><td>28</td></tr>
+      <tr><td>بطاطس موتزاريلا</td><td>25</td><td>28</td><td>33</td></tr>
+      <tr><td>بطاطس بازوكا</td><td>25</td><td>28</td><td>33</td></tr>
+      <tr><td>بطاطس ميكس جن</td><td>25</td><td>28</td><td>33</td></tr>
+      <tr><td>مهروسة زبدة</td><td>17</td><td>20</td><td>-</td></tr>
+      <tr><td>مهروسة زبدة</td><td>17</td><td>20</td><td>-</td></tr>
+      <tr><td>مهروسة أوملايت</td><td>20</td><td>22</td><td>25</td></tr>
+      <tr><td>مهروسة رومي</td><td>22</td><td>-</td><td>-</td></tr>
+      <tr><td>مهروسة شيدر</td><td>22</td><td>-</td><td>-</td></tr>
+      <tr><td>مهروسة موتزاريلا</td><td>25</td><td>-</td><td>-</td></tr>
+      <tr><td>مهروسة جبنة قريش</td><td>25</td><td>-</td><td>-</td></tr>
+      <tr><td>مهروسة بازوكا</td><td>-</td><td>-</td><td>-</td></tr>
+      <tr><td>مهروسة ميكس جن</td><td>30</td><td>30</td><td>-</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SANDWICHES: أوملايت -->
+<div class="section" style="padding-top:0">
+  <div class="section-title">
+    <span class="emoji">🍳</span>
+    <h2>سندوتشات الأوملايت</h2>
+  </div>
+  <table class="menu-table">
+    <thead>
+      <tr>
+        <th>الصنف</th>
+        <th>شامي</th>
+        <th>بلدي</th>
+        <th>فينو</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>أوملايت سادة</td><td>17</td><td>17</td><td>20</td></tr>
+      <tr><td>أوملايت اسكندراني</td><td>19</td><td>-</td><td>-</td></tr>
+      <tr><td>أوملايت سجق</td><td>18</td><td>18</td><td>22</td></tr>
+      <tr><td>أوملايت سوسيس</td><td>26</td><td>26</td><td>28</td></tr>
+      <tr><td>أوملايت بسطرمة</td><td>25</td><td>25</td><td>28</td></tr>
+      <tr><td>أوملايت رومي</td><td>25</td><td>25</td><td>28</td></tr>
+      <tr><td>أوملايت شيدر</td><td>25</td><td>25</td><td>28</td></tr>
+      <tr><td>أوملايت بيتزا</td><td>25</td><td>25</td><td>28</td></tr>
+      <tr><td>أوملايت موتزاريلا</td><td>25</td><td>25</td><td>28</td></tr>
+      <tr><td>أوملايت آباتشي</td><td>27</td><td>27</td><td>30</td></tr>
+      <tr><td>أوملايت ميكس جن</td><td>27</td><td>27</td><td>30</td></tr>
+      <tr><td>بيض مسلوق</td><td>16</td><td>16</td><td>19</td></tr>
+      <tr><td>بيض مسلوق مدحرج</td><td>17</td><td>16</td><td>17</td></tr>
+      <tr><td>بيض مسلوق مدحرج</td><td>20</td><td>-</td><td>-</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SANDWICHES: شرق -->
+<div class="section" style="padding-top:0">
+  <div class="section-title">
+    <span class="emoji">🥙</span>
+    <h2>سندوتشات الشرق</h2>
+  </div>
+  <table class="menu-table">
+    <thead>
+      <tr>
+        <th>الصنف</th>
+        <th>شامي</th>
+        <th>بلدي</th>
+        <th>فينو</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>شكشوكة</td><td>15</td><td>15</td><td>18</td></tr>
+      <tr><td>بابا غنوج</td><td>15</td><td>15</td><td>18</td></tr>
+      <tr><td>مسقعة</td><td>15</td><td>15</td><td>18</td></tr>
+      <tr><td>مسقعة سجق</td><td>18</td><td>25</td><td>28</td></tr>
+      <tr><td>ديناميت</td><td>-</td><td>-</td><td>-</td></tr>
+      <tr><td>عجة فرنساوي</td><td>18</td><td>18</td><td>-</td></tr>
+      <tr><td>جبنة قديمة</td><td>15</td><td>15</td><td>18</td></tr>
+      <tr><td>جبنة مقلية</td><td>-</td><td>-</td><td>-</td></tr>
+      <tr><td>جبنة مقلية بطاطس</td><td>29</td><td>32</td><td>-</td></tr>
+      <tr><td>جبنة مقلية بطاطس جامبو</td><td>33</td><td>35</td><td>37</td></tr>
+      <tr><td>جبنة مقلية بطاطس جامبو</td><td>21</td><td>-</td><td>23</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SANDWICHES: سوري -->
+<div class="section" style="padding-top:0">
+  <div class="section-title">
+    <span class="emoji">🌯</span>
+    <h2>سندوتشات السوري</h2>
+  </div>
+  <table class="menu-table">
+    <thead>
+      <tr>
+        <th>الصنف</th>
+        <th>السعر</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>بازوكا</td><td>35</td></tr>
+      <tr><td>صوايع ميكس جن</td><td>38</td></tr>
+      <tr><td>طعمية سوري</td><td>23</td></tr>
+      <tr><td>صوايع سوري</td><td>27</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <h3>🍽️ مطعم البركة</h3>
+  <p>فرع النزهة | إدارة: 01111452900</p>
+  <p>📞 01001803423 &nbsp;|&nbsp; 01113179539</p>
+  <div class="address">📍 132 شارع النزهة، ميدان تريومف، مصر الجديدة</div>
+  <br>
+  <div class="hours-badge">🕐 خدمة 24 ساعة</div>
+  <p style="margin-top:20px; opacity:0.7; font-size:13px;">جميع أنواع السندوتشات • شاورما • لحوم • توصيل للمنازل</p>
+</div>
+
+</body>
+</html>
